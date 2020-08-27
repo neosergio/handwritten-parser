@@ -1,3 +1,4 @@
+from google.cloud import vision
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -19,5 +20,11 @@ def document_list(request):
 @api_view(['POST'])
 def document_upload(request):
     image_raw = request.FILES.get('image').read()
-    print(image_raw)
+
+    client = vision.ImageAnnotatorClient()
+    image = vision.types.Image(content=image_raw)
+    response_from_gcp = client.text_detection(image)
+
+    text = response_from_gcp.full_text_annotation.text
+    print(text)
     return Response(status=status.HTTP_200_OK)

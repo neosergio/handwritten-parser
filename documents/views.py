@@ -30,17 +30,19 @@ def document_upload(request):
     document = Document.objects.create(text=text)
     serializer = DocumentSerializer(document)
 
-    levenshtein_distance = list()
+    distance_calculation = list()
     products = Product.objects.all()
     if len(products) > 0:
         for product in products:
-            distance = jellyfish.levenshtein_distance(text, product.name)
-            levenshtein_distance.append({
+            levenshtein_distance = jellyfish.levenshtein_distance(text, product.name)
+            jaro_distance = jellyfish.jaro_distance(text, product.name)
+            distance_calculation.append({
                 "product_name": product.name,
-                "distance": distance})
+                "levenshtein_distance": levenshtein_distance,
+                "jaro_distance": jaro_distance})
 
     response = {
         "data": serializer.data,
-        "levenshtein_distance": levenshtein_distance
+        "distance_calculation": distance_calculation
     }
     return Response(response, status=status.HTTP_201_CREATED)

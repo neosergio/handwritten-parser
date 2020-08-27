@@ -24,7 +24,12 @@ def document_upload(request):
     client = vision.ImageAnnotatorClient()
     image = vision.types.Image(content=image_raw)
     response_from_gcp = client.text_detection(image)
-
     text = response_from_gcp.full_text_annotation.text
-    print(text)
-    return Response(status=status.HTTP_200_OK)
+    
+    document = Document.objects.create(text=text)
+    serializer = DocumentSerializer(document)
+
+    response = {
+        "data": serializer.data
+    }
+    return Response(response, status=status.HTTP_201_CREATED)

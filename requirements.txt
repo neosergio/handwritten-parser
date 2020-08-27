@@ -4,3 +4,4 @@ django-environ==0.4.5
 psycopg2-binary>=2.8
 flake8
 google-cloud-vision>=1.0
+jellyfish==0.8.2

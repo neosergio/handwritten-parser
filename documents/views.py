@@ -1,8 +1,9 @@
+import jellyfish
 from google.cloud import vision
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Document
+from .models import Document, Product
 from .serializers import DocumentSerializer
 
 
@@ -25,11 +26,21 @@ def document_upload(request):
     image = vision.types.Image(content=image_raw)
     response_from_gcp = client.text_detection(image)
     text = response_from_gcp.full_text_annotation.text
-    
+
     document = Document.objects.create(text=text)
     serializer = DocumentSerializer(document)
 
+    levenshtein_distance = list()
+    products = Product.objects.all()
+    if len(products) > 0:
+        for product in products:
+            distance = jellyfish.levenshtein_distance(text, product.name)
+            levenshtein_distance.append({
+                "product_name": product.name,
+                "distance": distance})
+
     response = {
-        "data": serializer.data
+        "data": serializer.data,
+        "levenshtein_distance": levenshtein_distance
     }
     return Response(response, status=status.HTTP_201_CREATED)

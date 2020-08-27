@@ -1,0 +1,79 @@
+[{
+	"model": "documents.product",
+	"pk": 1,
+	"fields": {
+		"name": "ACUVUE"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 2,
+	"fields": {
+		"name": "OASYS"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 3,
+	"fields": {
+		"name": "VITA"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 4,
+	"fields": {
+		"name": "TrueEye"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 5,
+	"fields": {
+		"name": "HYDRACLEAR"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 6,
+	"fields": {
+		"name": "LACREON"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 7,
+	"fields": {
+		"name": "Ultrazyme"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 8,
+	"fields": {
+		"name": "LipiFlow"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 9,
+	"fields": {
+		"name": "TECNIS"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 10,
+	"fields": {
+		"name": "Footpedals"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 11,
+	"fields": {
+		"name": "HEALON5"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 12,
+	"fields": {
+		"name": "BAERVELDT"
+	}
+}, {
+	"model": "documents.product",
+	"pk": 13,
+	"fields": {
+		"name": "Excimer"
+	}
+}]

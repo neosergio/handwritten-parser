@@ -14,3 +14,10 @@ def document_list(request):
     }
     response = {"data": data}
     return Response(response, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def document_upload(request):
+    image_raw = request.FILES.get('image').read()
+    print(image_raw)
+    return Response(status=status.HTTP_200_OK)
